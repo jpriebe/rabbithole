@@ -17,13 +17,13 @@ Our team has spent countless hours dissecting the DOM to try to track down offen
 
 ## Configuration
 
-In order for DTRH to work with your site, you need to give it a CSS selector that will capture all the top-level DOM elements of your ad units (and is specific enough to *not* capture non-ad-unit elements).
+In order for rabbithole to work with your site, you need to give it a CSS selector that will capture all the top-level DOM elements of your ad units (and is specific enough to *not* capture non-ad-unit elements).
 
 For example, if you look at the ad tags on http://slashdot.org/, you will see that they all have IDs like `div-gpt-ad-728x90_a` and `div-gpt-ad-300x250_a`.  You can capture them all with a selector like
 
     [id*='div-gpt-ad']
     
-Once you have your selector, use the options dialog to configure DTRH.  You can open it either from the extensions page in chrome, or by clicking on the gear icon in the DTRH popup window.  If you have a DTRH window open when you change the CSS selector, you'll need to close DTRH and reopen it to get it to rescan your page's DOM.
+Once you have your selector, use the options dialog to configure rabbithole.  You can open it either from the extensions page in chrome, or by clicking on the gear icon in the rabbithole popup window.  If you have a rabbithole window open when you change the CSS selector, you'll need to close rabbithole and reopen it to get it to rescan your page's DOM.
 
 ## Installing from source
 
@@ -35,7 +35,7 @@ The code is interesting on a few levels:
 
 ### Iframe traversal
 
-DTRH builds a single unified tree representing your page's DOM along with all nested IFRAMEs' DOMs, including those from other domains.  Javascript running within a page cannot access the DOM of an iframe from another origin.  A chrome extension can get around this limitation by injecting a script into the page and all iframes.  It can then pass a message to the frames and gather information from all of the frames via callbacks, and then merging the sub-trees into the main tree.
+rabbithole builds a single unified tree representing your page's DOM along with all nested IFRAMEs' DOMs, including those from other domains.  Javascript running within a page cannot access the DOM of an iframe from another origin.  A chrome extension can get around this limitation by injecting a script into the page and all iframes.  It can then pass a message to the frames and gather information from all of the frames via callbacks, and then merging the sub-trees into the main tree.
 
 ### Message passing
 
@@ -43,5 +43,5 @@ Rather than sending one message to all frames, it sends an individual message to
 
 ### Standalone window
 
-I originally started with the DTRH UI inside of a regular extension popup.  The problem with that is that you can't move the popup, so it can be hard to see the ads in your page as you are inspecting them.  In order to create a standalone window that could be moved, I changed the code to use an event page instead of a default_popup.  When the user clicks the extension button, we inject the code into the frames from background.js (we can't do it in popup.js), then we send a message to the newly created window to have it begin messaging the frames and gathering the data.
+I originally started with the rabbithole UI inside of a regular extension popup.  The problem with that is that you can't move the popup, so it can be hard to see the ads in your page as you are inspecting them.  In order to create a standalone window that could be moved, I changed the code to use an event page instead of a default_popup.  When the user clicks the extension button, we inject the code into the frames from background.js (we can't do it in popup.js), then we send a message to the newly created window to have it begin messaging the frames and gathering the data.
 
