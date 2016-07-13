@@ -45,3 +45,6 @@ Rather than sending one message to all frames, it sends an individual message to
 
 I originally started with the rabbithole UI inside of a regular extension popup.  The problem with that is that you can't move the popup, so it can be hard to see the ads in your page as you are inspecting them.  In order to create a standalone window that could be moved, I changed the code to use an event page instead of a default_popup.  When the user clicks the extension button, we inject the code into the frames from background.js (we can't do it in popup.js), then we send a message to the newly created window to have it begin messaging the frames and gathering the data.
 
+## Credits
+
+Thanks to Renzo Trigoso (https://github.com/rtrigoso/) for a lot of the UI work. 
