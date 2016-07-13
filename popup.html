@@ -1,76 +1,157 @@
 <!doctype html>
 <html>
   <head>
-    <title>Down the Rabbit Hole</title>
+    <title>rabbithole</title>
     <link rel="stylesheet" type="text/css" href="icon_styles.css" media="screen">
     <link rel="stylesheet" type="text/css" href="css_tree_styles.css" media="screen">
     <style>
+      *, html { font-family: Verdana, Arial, Helvetica, sans-serif; }
       body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 10pt;
+        font-size: 9pt;
         min-width: 800px;
+        height: 600px;
         margin: 0;
+        white-space: nowrap;
       }
 
       h1 {
-        margin-top: 0px;
-        margin-bottom: 4px;
+        margin: 0px 0px 0px 0px;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        display: inline-block;
+      }
+
+      #rabbithole-icon {
+        width: 30px;
+        opacity: .85;
       }
 
       div.main-content {
-        margin: 8px;
+          display: flex;
+          flex-direction: column;
+          min-height: 600px;
       }
 
       div.header {
-        height: 40px;
-        border-bottom: 1px solid #666;
+        background-color: #e0e0e0;
+        color: #000;
+        height: 8%;
       }
 
       div.list {
-        height: 250px;
         overflow: auto;
+        padding: 10px 0px 10px 0px;
+        min-height: 32%;
       }
 
       div.detail {
-        height: 280px;
-        width: 100%;
-        border-top: 1px solid #666;
+          flex-grow: 1;
+          display: flex;
+          align-content: flex-start;
+          width: 100%;
+          position: absolute;
+          bottom: 0;
       }
 
       div.detail-text {
-        height: 100%;
-        width: 550px;
+        width: 55%;
         float: left;
-        border-right: 1px solid #666;
         overflow: auto;
+        background-color: #e0e0e0;
         padding: 8px;
+        font-size: 8pt;
+        flex-grow: 1;
       }
 
       div.detail-text table {
-        width: 500px;
+        width: 300px;
       }
 
       div.detail-text table td {
         vertical-align: top;
       }
 
+      div.div-detail-desc {
+          margin: 20px;
+          width: 100%;
+      }
+
       div.detail-image {
-        height: 200px;
-        width: 200px;
         float: left;
-        padding: 8px;
+        background-color: #656565;
+        color: #fff;
+        width: 45%;
+        overflow: auto;
+        /*display: flex;*/
+        flex-direction: column;
+        align-items: center;
+      }
+
+      div.detail-image > div.detail-image-src {
+          width: 100%;
+          background: black;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
       }
 
       img.detail-image {
-        max-height: 100%;
-        max-width: 100%;
+        max-width: 90%;
+        max-height: 200px;
         border: none;
+      }
+
+      div#load_page_start {
+        display: inline-block;
+        margin-right: 15px;
+        font-family: 'trebuchet ms', arial;
+        text-transform: uppercase;
+      }
+
+      #div-detail-desc {
+          width:95%;
+          font-family: Arial, sans-serif !important;
+          font-size:11px;
+          margin: auto;
+          text-transform: uppercase;
+          padding-top: 20px;
+          padding-bottom: 20px;
+      }
+
+      #div-detail-desc td.value {
+          text-transform: none;
+      }
+
+      #div-detail-desc a {
+          color: white;
+      }
+
+      #div-detail-desc strong {
+          font-weight: 100;
+      }
+
+      #div-detail-desc .desc td:last-child{
+          overflow: auto;
+      }
+
+      #div-detail-desc .desc td:first-child{
+          width: 45%;
+          vertical-align: top;
+      }
+
+      #div-detail-desc h4 {
+          padding-top: 20px;
+          padding-bottom: 5px;
+      }
+
+      div.timer {
+        height: 50px;
       }
 
       div.ad-el-tree {
         display: none;
       }
-      
+
       div.ad-el-tree.selected {
         display: block;
       }
@@ -80,22 +161,54 @@
         font-weight: bold;
       }
 
-      div.header-left {
-        width: 50%;
-        float: left;
+      div.header-left, div.header-right {
+        width: 47%;
+        display: inline-block;
+        margin: 15px 10px 7px 10px;
       }
 
       div.header-right {
-        height: 100%;
-        width: 50%;
-        float: right;
-        position: relative;
+        height: auto;
+        text-align: right;
+      }
+
+      div.header-right a, div.header-right a:visited, div.header-right a:hover{
+        color: black;
+        text-decoration: none;
       }
 
       .ad-image {
         font-weight: bold;
         color: #3CAF3C;
       }
+
+      div.perf-bar {
+        margin: 2px 0px 0px 0px;
+      }
+
+      div.perf-bar > span {
+        line-height: 3em;
+        display: inline-block;
+        padding-left: 20px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: .10em;
+      }
+
+      div.perf-bar >span:first-child {
+        background-color: #4ecb35;
+        color: #000000;
+        width: 75%;
+      }
+
+      div.perf-bar>div.perf-bar-child-select {
+          border-right: solid thin;
+          display: inline-block;
+          width: 50px;
+          height: 3em;
+          vertical-align: top;
+      }
+
 
     </style>
 
@@ -108,16 +221,19 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <div> 
+    <div>
     <div class="main-content">
         <div id="div-header" class="header">
             <div class="header-left">
-                <h1>DOWN THE RABBIT HOLE</h1>
+                <h1><img src="icon128.png" id="rabbithole-icon"/>rabbithole</h1>
+                <!-- <img src="icon128.png" id="rabbithole-icon"/> -->
             </div>
             <div class="header-right">
-                <div style="position: absolute; bottom: 0px">
-                    <strong>Select an ad unit:</strong> <span id="span-sel"></span></p>
-                </div>
+              <div id="load_page_start" ></div>
+              <a href="#" class="icon-settings" style="font-size: 32px;position: absolute; top: -10px; right: 5px;" id="go-to-options"></a>
+                <!-- <div>
+                    <strong>Select an ad unit:</strong> <span id="span-sel"></span>
+                </div> -->
             </div>
         </div>
         <div id="div-list" class="list">
@@ -127,12 +243,13 @@
             <div id="div-detail-text" class="detail-text">
             </div>
             <div id="div-detail-image" class="detail-image">
-                <img id="img-detail-image" class="detail-image" src="1x1.png" />
+                <div class="detail-image-src"><img id="img-detail-image" class="detail-image" src="1x1.png" /></div>
+                <div id="div-detail-desc">
+                </div>
             </div>
-            <div style="position: absolute; bottom: 4px; right: 4px;>
-                <a href="#" class="icon-settings" style="font-size: 32px;" id="go-to-options"></a>
-            </div>
+            <!-- <div style="position: absolute; bottom: 4px; right: 4px;">
+
+            </div> -->
         </div>
   </body>
 </html>
-
