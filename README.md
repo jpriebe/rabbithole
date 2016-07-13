@@ -1,11 +1,11 @@
-# Down the Rabbit Hole
+# rabbithole
 Chrome Extension for publishers to investigate third-party ads
 
 As a publisher on the web today, you may have a love-hate relationship with ad networks.  On one hand, those ad networks help to pay the bills.  But on the other hand, their questionable coding abilities, poor security, and dubious business practices expose you to all sorts of problems.
 
 Our team has spent countless hours dissecting the DOM to try to track down offending ads.  This is tedious work, especially when an ad call gets bounced from network to network, creating an extremely complex DOM of nested IFRAMEs.
 
-*Down the Rabbit Hole* is designed to stremaline this process.  Using a CSS selector provided by you, it identifies the top-level DOM elements for your ad units.  It then recursively descends those elements, building a simpler object model for you to analyze.
+*rabbithole* is designed to stremaline this process.  Using a CSS selector provided by you, it identifies the top-level DOM elements for your ad units.  It then recursively descends those elements, building a simpler object model for you to analyze.
 
 * simplifies the identification and interpretation of the ad-related portion of the DOM
 * "compresses" the tree by skipping past DOM elements that aren't really important and only tracking select properties
