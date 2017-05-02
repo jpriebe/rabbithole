@@ -3,7 +3,7 @@
 
   "name": "rabbithole",
   "description": "Digs down into the nasty details of your ad units",
-  "version": "1.0",
+  "version": "1.0.1",
 
 
   "options_ui": {

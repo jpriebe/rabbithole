@@ -655,7 +655,7 @@ function rh_popup ()
             {
                 markup += "<tr><td colspan='2' ><h4>Performance</h4></td></tr>";
                 markup += "<tr><td><strong>start time:</strong></td><td class=\"value\">" + toFullLocaleTimeString (o.performance.loadStart) + "</td></tr>\n";
-                markup += "<tr><td><strong>end time:</strong></td><td class=\"value\">" + toFullLocaleTimeString (o.performance.loadStart) + "</td></tr>\n";
+                markup += "<tr><td><strong>end time:</strong></td><td class=\"value\">" + toFullLocaleTimeString (o.performance.loadStart + o.performance.duration) + "</td></tr>\n";
                 markup += "<tr><td><strong>Time (rel):</strong></td><td class=\"value\">" + Math.round (o.performance.duration) + " ms" + "</td></tr>\n";
                 markup += "<tr><td><strong>Time (abs):</strong></td><td class=\"value\">" + Math.round ((o.performance.loadStart - _load_page_start) + o.performance.duration) + " ms" + "</td></tr>\n";
             }
